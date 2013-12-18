@@ -40,7 +40,7 @@ class Gallery(webapp2.RequestHandler):
 class Upload(webapp2.RequestHandler):
     def get(self):
         data = models.Gallery.all()
-        galleries = [x.name for x in data]
+        galleries = [{'name':x.name,'key':x.key()} for x in data]
         template_values = {
             'galleries': galleries
         }
@@ -72,6 +72,13 @@ class GalleryUpload(webapp2.RequestHandler):
         gallery.put()
         self.redirect('upload')
 
+class GalleryDelete(webapp2.RequestHandler):
+    def post(self):
+        gallery = db.get(self.request.get('gallery'))
+        db.delete(models.Image.all().ancestor(gallery))
+        db.delete(gallery)
+        self.redirect('upload')
+
 class Img(webapp2.RequestHandler):
     def get(self):
         img = db.get(self.request.get('img_id'))
@@ -92,5 +99,6 @@ application = webapp2.WSGIApplication([
     ('/img', Img),
     ('/upload', Upload),
     ('/gallery-upload', GalleryUpload),
+    ('/gallery-delete', GalleryDelete),
     ('/image-upload', ImageUpload),
 ], debug=True)

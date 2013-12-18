@@ -1,23 +1,38 @@
-<!DOCTYPE html>
-{% autoescape true  %}
-<body>
-    <p>
-    <form method='post' action='/gallery-upload' enctype="multipart/form-data">
-        <div><label>Gallery Name:</label></div>
-        <div><input type="text" name="name"/></div>
-        <div><label>Gallery Image:</label></div>
-        <div><input type="file" name="img"/></div>
-        <input type="submit" value="create">
-    </form>
-    </p><p>
-    <form method='post' action='/image-upload' enctype="multipart/form-data">
-        {% for x in galleries %}
-        <input type="radio" name="gallery" value="{{x}}">{{x}}<br>
-        {% endfor %}
-        <div><label>Images Files:</label></div>
-        <div><input type="file" name="img" multiple/></div>
-        <input type="submit" value="upload">
-    </form>
-    </p>
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="span4">
+        <h4>Create Gallery</h4>
+        <br>
+        <form method='post' action='/gallery-upload' enctype="multipart/form-data">
+            <div><label>Gallery Name:</label></div>
+            <div><input type="text" name="name"/></div>
+            <div><label>Gallery Image:</label></div>
+            <div><input type="file" name="img"/></div>
+            <input type="submit" value="create">
+        </form>
+    </div>
+    <div class="span4">
+        <h4>Upload Images</h4>
+        <br>
+        <form method='post' action='/image-upload' enctype="multipart/form-data">
+            {% for x in galleries %}
+            <input type="radio" name="gallery" value="{{x['name']}}">{{x['name']}}<br>
+            {% endfor %}
+            <div><label>Images Files:</label></div>
+            <div><input type="file" name="img" multiple/></div>
+            <input type="submit" value="upload">
+        </form>
+    </div>
+    <div class="span4">
+        <h4>Delete Gallery</h4>
+        <br>
+        <form method='post' action='/gallery-delete' enctype="multipart/form-data">
+            {% for x in galleries %}
+            <input type="radio" name="gallery" value="{{x['key']}}">{{x['name']}}<br>
+            {% endfor %}
+            <input type="submit" value="delete">
+        </form>
+    </div>
 </body>
-{% endautoescape  %}
+{% endblock %}
