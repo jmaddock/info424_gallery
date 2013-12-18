@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% autoescape true  %}
+<body>
+    <p>
+    <form method='post' action='/gallery-upload' enctype="multipart/form-data">
+        <div><label>Gallery Name:</label></div>
+        <div><input type="text" name="name"/></div>
+        <div><label>Gallery Image:</label></div>
+        <div><input type="file" name="img"/></div>
+        <input type="submit" value="create">
+    </form>
+    </p><p>
+    <form method='post' action='/image-upload' enctype="multipart/form-data">
+        {% for x in galleries %}
+        <input type="radio" name="gallery" value="{{x}}">{{x}}<br>
+        {% endfor %}
+        <div><label>Images Files:</label></div>
+        <div><input type="file" name="img" multiple/></div>
+        <input type="submit" value="upload">
+    </form>
+    </p>
+</body>
+{% endautoescape  %}

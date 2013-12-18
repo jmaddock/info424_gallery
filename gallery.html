@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class = "container">
+	<div class="row">
+	    <div class="span12">
+                {% for x in range(0,length,3) %}
+		<ul class="thumbnails">
+                    {% for y in range(3) %}
+                    {% if x+y < length  %}
+                    <li class="span4">
+			<a href="img?img_id={{keys[x+y]}}&&view=True" class="thumbnail">
+			    <img src="img?img_id={{keys[x+y]}}&&view=False&&thumb=True" alt="">
+			</a>
+		    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<head>
+    <title>INFO 424 Gallery</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="/stylesheets/portfolio.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-static-top">
+	<div class="container">
+	    <div class="row">
+		<div class="span12">
+		    <a class="brand tall" href="/"><h3>INFO 424 Gallery</h3></a>
+                </div>
+	    </div>
+	</div>
+    </div>
+    <hr style="margin-top:0px;">
+    {% block content %}
+    {% endblock  %}
+    <div class="navbar navbar-fixed-bottom footer">
+	<hr class="footer">
+	<div class="container" style="width:940px">
+	    <div class="row">
+		<div class="span12">
+		    <h6 style="text-align:center">Jim Maddock | <a href='/upload'>upload</a><a href='</h6>
+		</div>
+	    </div>
+	</div>
+    </div>
+</body>
+{% endautoescape %}
