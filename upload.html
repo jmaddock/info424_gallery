@@ -16,9 +16,11 @@
         <h4>Upload Images</h4>
         <br>
         <form method='post' action='/image-upload' enctype="multipart/form-data">
+            <div><label>Choose a gallery:</label></div>
             {% for x in galleries %}
             <input type="radio" name="gallery" value="{{x['name']}}">{{x['name']}}<br>
             {% endfor %}
+            <br>
             <div><label>Images Files:</label></div>
             <div><input type="file" name="img" multiple/></div>
             <input type="submit" value="upload">
@@ -28,9 +30,11 @@
         <h4>Delete Gallery</h4>
         <br>
         <form method='post' action='/gallery-delete' enctype="multipart/form-data">
+            <label>Choose a gallery:</label>
             {% for x in galleries %}
             <input type="radio" name="gallery" value="{{x['key']}}">{{x['name']}}<br>
             {% endfor %}
+            <br>
             <input type="submit" value="delete">
         </form>
     </div>
